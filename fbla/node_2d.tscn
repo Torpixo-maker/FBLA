@@ -15,7 +15,7 @@ animations = [{
 }]
 
 [node name="test _sprite" type="Area2D"]
-position = Vector2(112, 133)
+position = Vector2(-96, 11)
 script = ExtResource("1_0e48y")
 metadata/_edit_group_ = true
 
@@ -23,3 +23,5 @@ metadata/_edit_group_ = true
 position = Vector2(3, 0)
 sprite_frames = SubResource("SpriteFrames_0e48y")
 metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
