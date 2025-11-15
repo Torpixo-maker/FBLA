@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdm6cbajtcfr7"]
+
+[ext_resource type="Script" uid="uid://isljpu3lhcby" path="res://title_screen.gd" id="2_6uqi0"]
+[ext_resource type="Texture2D" uid="uid://bgdjdeb2ee53x" path="res://title screen.png" id="2_8uh7m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ppyta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8uh7m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="title screen" type="AnimatedSprite2D" parent="."]
+position = Vector2(600, 400)
+sprite_frames = SubResource("SpriteFrames_ppyta")
+script = ExtResource("2_6uqi0")
