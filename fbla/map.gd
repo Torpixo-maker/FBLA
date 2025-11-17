@@ -5,9 +5,10 @@ extends AnimatedSprite2D
 func _ready():
 	show()
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
-	if Input.is_action_pressed("left_click"):
-		Global.gameStarted = true
-	if Global.gameStarted == true:
+	if Global.inMinigames == true:
 		hide()
+	else:
+		show()
