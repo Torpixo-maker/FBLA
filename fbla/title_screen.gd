@@ -1,4 +1,4 @@
-extends AnimatedSprite2D
+extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -7,7 +7,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
-	if Input.is_action_pressed("left_click"):
-		Global.gameStarted = true
 	if Global.gameStarted == true:
 		hide()
+
+
+func _on_button_pressed() -> void:
+	Global.gameStarted = true

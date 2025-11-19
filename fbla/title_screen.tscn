@@ -1,22 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdm6cbajtcfr7"]
+[gd_scene load_steps=3 format=3 uid="uid://cdm6cbajtcfr7"]
 
 [ext_resource type="Script" uid="uid://isljpu3lhcby" path="res://title_screen.gd" id="2_6uqi0"]
 [ext_resource type="Texture2D" uid="uid://bgdjdeb2ee53x" path="res://title screen.png" id="2_8uh7m"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ppyta"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_8uh7m")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="Node2D" type="Node2D"]
-
-[node name="title screen" type="AnimatedSprite2D" parent="."]
+[node name="title_screen" type="Node2D"]
 position = Vector2(600, 400)
-sprite_frames = SubResource("SpriteFrames_ppyta")
 script = ExtResource("2_6uqi0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8uh7m")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -40.0
+offset_right = 77.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,12 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddwacjxuju81e"]
+[gd_scene load_steps=11 format=3 uid="uid://ddwacjxuju81e"]
 
 [ext_resource type="Texture2D" uid="uid://crjow5jfu2w3c" path="res://player.png" id="1_epypp"]
 [ext_resource type="Script" uid="uid://dam1ohw277x53" path="res://player.gd" id="3_0hol4"]
+[ext_resource type="PackedScene" uid="uid://wyt2qp45sdcp" path="res://npc.tscn" id="3_4d7sh"]
+[ext_resource type="Script" uid="uid://cbs054ncjlnfo" path="res://camera_2d.gd" id="3_d21ai"]
 [ext_resource type="PackedScene" uid="uid://cdm6cbajtcfr7" path="res://title_screen.tscn" id="3_epypp"]
 [ext_resource type="PackedScene" uid="uid://c26iyu1jd833f" path="res://map.tscn" id="4_q6r6c"]
+[ext_resource type="PackedScene" uid="uid://hja3a1vksbku" path="res://tasks_display.tscn" id="6_kdubu"]
+[ext_resource type="PackedScene" uid="uid://86m33dm1ivmu" path="res://table.tscn" id="8_rj586"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
-size = Vector2(32, 92)
+size = Vector2(24, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q6r6c"]
 animations = [{
@@ -15,25 +19,35 @@ animations = [{
 "texture": ExtResource("1_epypp")
 }],
 "loop": true,
-"name": &"default",
+"name": &"right",
 "speed": 5.0
 }]
 
 [node name="mainslashplayer" type="Node2D"]
 
-[node name="Node2D" parent="." instance=ExtResource("4_q6r6c")]
-position = Vector2(-602, -402)
+[node name="map" parent="." instance=ExtResource("4_q6r6c")]
+position = Vector2(-633, -402)
+
+[node name="table" parent="." instance=ExtResource("8_rj586")]
+position = Vector2(-276, -122)
+
+[node name="npc" parent="." instance=ExtResource("3_4d7sh")]
 
 [node name="player" type="CharacterBody2D" parent="."]
+collision_mask = 2
 script = ExtResource("3_0hol4")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+script = ExtResource("3_d21ai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2(0, 2)
+position = Vector2(0, 38)
 shape = SubResource("RectangleShape2D_0hol4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player"]
 sprite_frames = SubResource("SpriteFrames_q6r6c")
+animation = &"right"
+
+[node name="tasks_display" parent="." instance=ExtResource("6_kdubu")]
 
 [node name="title screen" parent="." instance=ExtResource("3_epypp")]

@@ -1,10 +1,5 @@
-extends Node
+extends Camera2D
 
-var gameStarted = false
-var inMinigames = false
-var tasksLeft = 6
-var camera_position_x = []
-var camera_position_y = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,4 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	Global.camera_position_x = global_position.x
+	Global.camera_position_y = global_position.y
