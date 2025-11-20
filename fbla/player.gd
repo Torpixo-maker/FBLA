@@ -9,10 +9,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Global.inMinigames == true:
-		hide()
-	else:
-		show()
 		
 	var velocity = Vector2.ZERO
 	
@@ -39,7 +35,6 @@ func _process(delta):
 		$AnimatedSprite2D.flip_h = false
 
 	move_and_slide()
-	
 	
 func player():
 	pass

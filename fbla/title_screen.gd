@@ -3,13 +3,16 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	show()
+	if Global.gameStarted == false:
+		show()
+	else:
+		hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
-	if Global.gameStarted == true:
-		hide()
+	pass
 
 
-func _on_button_pressed() -> void:
+func _on_button_pressed():
 	Global.gameStarted = true
+	hide()

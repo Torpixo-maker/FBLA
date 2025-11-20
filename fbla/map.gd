@@ -8,7 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
-	if Global.inMinigames == true:
-		hide()
-	else:
-		show()
+	pass

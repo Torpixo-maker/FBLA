@@ -1,0 +1,18 @@
+extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Car.old_tire_bolts == "off":
+		$Sprite2D.texture = preload("res://car minigame/tire_no_screws.png")
+	else:
+		$Sprite2D.texture = preload("res://car minigame/tire.png")
+	
+	if Input.is_action_pressed("left_click"):
+		if Car.hand_on_old_wheel == true and Car.old_tire_bolts == "off" and Car.handState == "hand":
+			global_position = get_global_mouse_position()
