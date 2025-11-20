@@ -1,7 +1,7 @@
 extends Node2D
 
-var hand1 = preload ("res://Sprites/hand-1.png")
-var hand2 = 	preload ("res://Sprites/hand-2.png")
+var hand1 = preload ("res://hand-1.png")
+var hand2 = 	preload ("res://hand-2.png")
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://racsubn700sw"]
 
 [ext_resource type="Script" uid="uid://bdii3csqe1qf3" path="res://grid_container.gd" id="1_swrb1"]
-[ext_resource type="Script" uid="uid://fnjplb10aw5x" path="res://button.gd" id="2_6qfwk"]
+[ext_resource type="PackedScene" uid="uid://lpf8hrivg7br" path="res://button.tscn" id="2_6goqw"]
 [ext_resource type="Script" uid="uid://b2n74kykblku4" path="res://node_2d.gd" id="3_6goqw"]
 [ext_resource type="Script" uid="uid://ck4o7dy17t3qu" path="res://canvasgrid.gd" id="3_7ruq7"]
 [ext_resource type="Texture2D" uid="uid://bwwqrf0a84kl1" path="res://hand-1.png" id="4_7ruq7"]
@@ -36,11 +36,11 @@ offset_bottom = 40.0
 
 [node name="Targetgrid" type="GridContainer" parent="Tablet/Target"]
 layout_mode = 2
+columns = 5
 script = ExtResource("1_swrb1")
 
-[node name="Button" type="Button" parent="Tablet/Target/Targetgrid"]
+[node name="Button" parent="Tablet/Target/Targetgrid" instance=ExtResource("2_6goqw")]
 layout_mode = 2
-script = ExtResource("2_6qfwk")
 
 [node name="Canvas" type="CenterContainer" parent="Tablet"]
 offset_right = 40.0
@@ -48,6 +48,7 @@ offset_bottom = 40.0
 
 [node name="canvasgrid" type="GridContainer" parent="Tablet/Canvas"]
 layout_mode = 2
+columns = 5
 script = ExtResource("3_7ruq7")
 
 [node name="completion" type="Button" parent="Tablet"]
@@ -65,3 +66,5 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_7ruq7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+
+[connection signal="pressed" from="Tablet/Target/Targetgrid/Button" to="Tablet/Target/Targetgrid/Button" method="_on_pressed"]
