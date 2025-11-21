@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dn5ia0uncdbrx"]
+[gd_scene load_steps=14 format=3 uid="uid://dn5ia0uncdbrx"]
 
 [ext_resource type="Texture2D" uid="uid://cx7ql0wqm2phj" path="res://Pad.png" id="1_4nvyi"]
 [ext_resource type="Script" uid="uid://df0b125v17ip3" path="res://car_minigame.gd" id="1_d0wqu"]
-[ext_resource type="Script" uid="uid://0pu88vpdisex" path="res://car.gd" id="3_m4kcs"]
 [ext_resource type="Script" uid="uid://b4bn4arcunq4c" path="res://hand_car.gd" id="3_nlt58"]
 [ext_resource type="Texture2D" uid="uid://bwwqrf0a84kl1" path="res://hand-1.png" id="4_0lj0v"]
 [ext_resource type="Script" uid="uid://dwi26df4y363g" path="res://old_tire.gd" id="4_13meq"]
@@ -10,11 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://c63xk0mf3puov" path="res://car minigame/Car_without_tire.png" id="5_0lj0v"]
 [ext_resource type="Script" uid="uid://drjbhu575t5he" path="res://wrench.gd" id="5_6ox5g"]
 [ext_resource type="Texture2D" uid="uid://cpjs4dkwylai1" path="res://car minigame/wrench.png" id="5_6x0t5"]
-[ext_resource type="Script" uid="uid://c1a1md4p3806c" path="res://new_tire.gd" id="6_mcaya"]
-[ext_resource type="Texture2D" uid="uid://d1rnxdhc2n7dq" path="res://car minigame/tire_no_screws.png" id="6_offks"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13meq"]
-radius = 23.0722
+radius = 32.0051
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6x0t5"]
 radius = 74.96666
@@ -36,19 +33,19 @@ texture = ExtResource("1_4nvyi")
 [node name="car" type="Area2D" parent="."]
 position = Vector2(632, 328)
 scale = Vector2(3.5, 3.5)
-script = ExtResource("3_m4kcs")
 
 [node name="Sprite2D" type="Sprite2D" parent="car"]
 texture = ExtResource("5_0lj0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="car"]
-position = Vector2(-82.85715, 0.8571435)
+position = Vector2(-82.28572, 0.57142925)
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_13meq")
 
 [node name="old_tire" type="Area2D" parent="."]
 position = Vector2(340, 329)
 script = ExtResource("4_13meq")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="old_tire"]
 position = Vector2(2.3841858e-07, 7.867813e-06)
@@ -59,18 +56,7 @@ texture = ExtResource("4_dlhb1")
 position = Vector2(3, 3)
 shape = SubResource("CircleShape2D_6x0t5")
 
-[node name="new_tire" type="Area2D" parent="."]
-position = Vector2(614, 604)
-script = ExtResource("6_mcaya")
-
-[node name="Sprite2D" type="Sprite2D" parent="new_tire"]
-position = Vector2(3.0457973e-05, 1.013279e-06)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("6_offks")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="new_tire"]
-position = Vector2(3, 2)
-shape = SubResource("CircleShape2D_6x0t5")
+[node name="new_tire" type="CharacterBody2D" parent="."]
 
 [node name="wrench" type="Area2D" parent="."]
 script = ExtResource("5_6ox5g")
@@ -98,17 +84,9 @@ position = Vector2(0, 57)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_0lj0v")
 
-[connection signal="area_entered" from="car" to="old_tire" method="_on_car_area_entered"]
-[connection signal="area_exited" from="car" to="old_tire" method="_on_car_area_exited"]
-[connection signal="area_shape_entered" from="car" to="." method="_on_car_area_shape_entered"]
-[connection signal="body_entered" from="car" to="old_tire" method="_on_car_body_entered"]
-[connection signal="body_entered" from="car" to="new_tire" method="_on_car_body_entered"]
-[connection signal="body_exited" from="car" to="old_tire" method="_on_car_body_exited"]
 [connection signal="body_entered" from="old_tire" to="hand" method="_on_old_tire_body_entered"]
 [connection signal="body_exited" from="old_tire" to="hand" method="_on_old_tire_body_exited"]
 [connection signal="mouse_entered" from="old_tire" to="." method="_on_old_tire_mouse_entered"]
-[connection signal="body_entered" from="new_tire" to="hand" method="_on_new_tire_body_entered"]
-[connection signal="body_exited" from="new_tire" to="hand" method="_on_new_tire_body_exited"]
 [connection signal="area_entered" from="wrench" to="hand" method="_on_wrench_area_entered"]
 [connection signal="body_entered" from="wrench" to="." method="_on_wrench_body_entered"]
 [connection signal="body_entered" from="wrench" to="wrench" method="_on_body_entered"]

@@ -65,16 +65,3 @@ func _on_old_tire_body_entered(body: Node2D) -> void:
 func _on_old_tire_body_exited(body: Node2D) -> void:
 	Car.wrench_on_old_wheel = false
 	Car.hand_on_old_wheel = false
-
-
-func _on_new_tire_body_entered(body: Node2D) -> void:
-	if body.has_method("hand"):
-		Car.hand_on_new_wheel = true
-		if $playerhand.texture == wrench:
-			Car.wrench_on_new_wheel = true
-
-
-
-func _on_new_tire_body_exited(body: Node2D) -> void:
-	Car.wrench_on_new_wheel = false
-	Car.hand_on_new_wheel = false
