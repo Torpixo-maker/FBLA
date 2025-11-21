@@ -99,4 +99,5 @@ texture = ExtResource("4_7ruq7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 
+[connection signal="pressed" from="Tablet/Canvas/canvasgrid/Button" to="Tablet/Canvas/canvasgrid/Button" method="_on_pressed"]
 [connection signal="pressed" from="Tablet/completion" to="Tablet/completion" method="_on_pressed"]
