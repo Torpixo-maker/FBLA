@@ -1,27 +1,102 @@
-[gd_scene load_steps=6 format=3 uid="uid://lpf8hrivg7br"]
+[gd_scene load_steps=9 format=3 uid="uid://c7hdn5a5qmpor"]
 
-[ext_resource type="Script" uid="uid://fnjplb10aw5x" path="res://button.gd" id="1_r04n3"]
+[ext_resource type="Texture2D" uid="uid://cx7ql0wqm2phj" path="res://Pad.png" id="1_lj86r"]
+[ext_resource type="Script" uid="uid://bdcdjhgxw1lh1" path="res://targetgrid.gd" id="2_d7rpu"]
+[ext_resource type="Script" uid="uid://qgyd7jyymibt" path="res://TileMap.gd" id="3_m64rv"]
+[ext_resource type="Script" uid="uid://ck4o7dy17t3qu" path="res://canvasgrid.gd" id="4_47axv"]
+[ext_resource type="Script" uid="uid://cd3wpv5x3vpbc" path="res://completion.gd" id="5_8sibl"]
+[ext_resource type="Script" uid="uid://b2n74kykblku4" path="res://node_2d.gd" id="6_xytk5"]
+[ext_resource type="Texture2D" uid="uid://bwwqrf0a84kl1" path="res://hand-1.png" id="7_4sa2v"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r04n3"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="Resource" id="Resource_7ruq7"]
+script = ExtResource("3_m64rv")
+row_1 = Array[int]([2, 2, 1, 1, 2])
+row_2 = Array[int]([2, 0, 1, 0, 2])
+row_3 = Array[int]([0, 0, 0, 0, 0])
+row_4 = Array[int]([0, 0, 0, 0, 0])
+row_5 = Array[int]([2, 0, 0, 0, 2])
+metadata/_custom_type_script = "uid://qgyd7jyymibt"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n4tde"]
-bg_color = Color(1, 1, 1, 1)
+[node name="PixelArtMini" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxja4"]
-bg_color = Color(1, 1, 1, 1)
+[node name="Tablet" type="Node2D" parent="."]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lt4la"]
-bg_color = Color(1, 1, 1, 1)
+[node name="tablet-sprite" type="Sprite2D" parent="Tablet"]
+position = Vector2(597, 423)
+texture = ExtResource("1_lj86r")
 
-[node name="Button" type="Button"]
+[node name="Node2D2" type="Node2D" parent="Tablet"]
+
+[node name="Equal sign line 2" type="ColorRect" parent="Tablet"]
+offset_left = 520.0
+offset_top = 404.0
+offset_right = 659.925
+offset_bottom = 433.0
+color = Color(0, 0, 0, 1)
+
+[node name="Equal sign line 3" type="ColorRect" parent="Tablet"]
+offset_left = 520.0
+offset_top = 319.0
+offset_right = 659.925
+offset_bottom = 348.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Tablet"]
+offset_left = 180.0
+offset_top = 110.0
+offset_right = 1036.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 42
+text = "Match the picture with the one on the left!"
+
+[node name="Target" type="CenterContainer" parent="Tablet"]
+offset_left = 730.0
+offset_top = 265.0
+offset_right = 770.0
+offset_bottom = 305.0
+
+[node name="Targetgrid" type="GridContainer" parent="Tablet/Target"]
+layout_mode = 2
+columns = 5
+script = ExtResource("2_d7rpu")
+tile_set = SubResource("Resource_7ruq7")
+
+[node name="Canvas" type="CenterContainer" parent="Tablet"]
 custom_minimum_size = Vector2(64, 64)
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_r04n3")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n4tde")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vxja4")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_lt4la")
-script = ExtResource("1_r04n3")
+offset_left = 111.0
+offset_top = 262.0
+offset_right = 175.0
+offset_bottom = 326.0
 
-[connection signal="pressed" from="." to="." method="_on_pressed"]
+[node name="canvasgrid" type="GridContainer" parent="Tablet/Canvas"]
+layout_mode = 2
+columns = 5
+script = ExtResource("4_47axv")
+
+[node name="completion" type="Button" parent="Tablet" node_paths=PackedStringArray("player_container", "target_container")]
+offset_left = 500.0
+offset_top = 638.0
+offset_right = 685.8378
+offset_bottom = 710.0
+theme_override_font_sizes/font_size = 32
+text = "Submit"
+script = ExtResource("5_8sibl")
+player_container = NodePath("../Canvas/canvasgrid")
+target_container = NodePath("../Target/Targetgrid")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("6_xytk5")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="hand" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(0, 1)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_4sa2v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+
+[connection signal="pressed" from="Tablet/completion" to="Tablet/completion" method="_on_pressed"]
