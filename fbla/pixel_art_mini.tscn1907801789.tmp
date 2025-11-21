@@ -1,21 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://racsubn700sw"]
+[gd_scene load_steps=7 format=3 uid="uid://racsubn700sw"]
 
 [ext_resource type="Texture2D" uid="uid://cx7ql0wqm2phj" path="res://Pad.png" id="1_7ruq7"]
-[ext_resource type="Script" uid="uid://bdcdjhgxw1lh1" path="res://targetgrid.gd" id="2_6goqw"]
+[ext_resource type="Script" uid="uid://bdii3csqe1qf3" path="res://grid_container.gd" id="1_swrb1"]
 [ext_resource type="Script" uid="uid://b2n74kykblku4" path="res://node_2d.gd" id="3_6goqw"]
 [ext_resource type="Script" uid="uid://ck4o7dy17t3qu" path="res://canvasgrid.gd" id="3_7ruq7"]
-[ext_resource type="Script" uid="uid://qgyd7jyymibt" path="res://TileMap.gd" id="3_mqdgr"]
 [ext_resource type="Texture2D" uid="uid://bwwqrf0a84kl1" path="res://hand-1.png" id="4_7ruq7"]
 [ext_resource type="Script" uid="uid://cd3wpv5x3vpbc" path="res://completion.gd" id="4_mqdgr"]
-
-[sub_resource type="Resource" id="Resource_7ruq7"]
-script = ExtResource("3_mqdgr")
-row_1 = Array[int]([2, 2, 1, 1, 2])
-row_2 = Array[int]([2, 0, 1, 0, 2])
-row_3 = Array[int]([0, 0, 0, 0, 0])
-row_4 = Array[int]([0, 0, 0, 0, 0])
-row_5 = Array[int]([2, 0, 0, 0, 2])
-metadata/_custom_type_script = "uid://qgyd7jyymibt"
 
 [node name="PixelArtMini" type="Control"]
 layout_mode = 3
@@ -30,18 +20,16 @@ texture = ExtResource("1_7ruq7")
 [node name="Node2D2" type="Node2D" parent="Tablet"]
 
 [node name="Equal sign line 2" type="ColorRect" parent="Tablet"]
-offset_left = 520.0
-offset_top = 404.0
-offset_right = 659.925
-offset_bottom = 433.0
-color = Color(0, 0, 0, 1)
+offset_left = 150.0
+offset_top = -80.0
+offset_right = 190.0
+offset_bottom = -40.0
 
-[node name="Equal sign line 3" type="ColorRect" parent="Tablet"]
-offset_left = 520.0
-offset_top = 319.0
-offset_right = 659.925
-offset_bottom = 348.0
-color = Color(0, 0, 0, 1)
+[node name="Equal sign line 1" type="ColorRect" parent="Tablet"]
+offset_left = 41.0
+offset_top = -128.0
+offset_right = 81.0
+offset_bottom = -88.0
 
 [node name="Label" type="Label" parent="Tablet"]
 offset_left = 180.0
@@ -53,39 +41,34 @@ theme_override_font_sizes/font_size = 42
 text = "Match the picture with the one on the left!"
 
 [node name="Target" type="CenterContainer" parent="Tablet"]
-offset_left = 730.0
-offset_top = 265.0
-offset_right = 770.0
-offset_bottom = 305.0
+modulate = Color(0, 0.5065823, 0.5065822, 1)
+self_modulate = Color(0.3137255, 1, 1, 1)
+offset_left = 875.0
+offset_top = 450.0
+offset_right = 915.0
+offset_bottom = 490.0
 
 [node name="Targetgrid" type="GridContainer" parent="Tablet/Target"]
 layout_mode = 2
 columns = 5
-script = ExtResource("2_6goqw")
-tile_set = SubResource("Resource_7ruq7")
+script = ExtResource("1_swrb1")
 
 [node name="Canvas" type="CenterContainer" parent="Tablet"]
-custom_minimum_size = Vector2(64, 64)
-offset_left = 111.0
-offset_top = 262.0
-offset_right = 175.0
-offset_bottom = 326.0
+offset_left = 287.0
+offset_top = 450.0
+offset_right = 327.0
+offset_bottom = 490.0
 
 [node name="canvasgrid" type="GridContainer" parent="Tablet/Canvas"]
 layout_mode = 2
 columns = 5
 script = ExtResource("3_7ruq7")
 
-[node name="completion" type="Button" parent="Tablet" node_paths=PackedStringArray("player_container", "target_container")]
-offset_left = 500.0
-offset_top = 638.0
-offset_right = 685.8378
-offset_bottom = 710.0
-theme_override_font_sizes/font_size = 32
+[node name="completion" type="Button" parent="Tablet"]
+offset_right = 8.0
+offset_bottom = 8.0
 text = "Submit"
 script = ExtResource("4_mqdgr")
-player_container = NodePath("../Canvas/canvasgrid")
-target_container = NodePath("../Target/Targetgrid")
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("3_6goqw")
@@ -93,10 +76,8 @@ script = ExtResource("3_6goqw")
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="hand" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(0, 1)
+position = Vector2(-94, 55)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_7ruq7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-
-[connection signal="pressed" from="Tablet/completion" to="Tablet/completion" method="_on_pressed"]
