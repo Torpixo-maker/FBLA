@@ -132,7 +132,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("6_ycdy4")
 
 [node name="trophy" type="StaticBody2D" parent="main"]
-position = Vector2(-101, -44)
+position = Vector2(-84, -70)
 collision_layer = 2
 script = ExtResource("9_82xsv")
 metadata/_edit_group_ = true
