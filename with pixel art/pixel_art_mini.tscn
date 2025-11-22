@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://racsubn700sw"]
+[gd_scene load_steps=17 format=3 uid="uid://racsubn700sw"]
 
+[ext_resource type="Script" uid="uid://8ta7irnvaq2u" path="res://pixel_art_mini.gd" id="1_4fk06"]
 [ext_resource type="Texture2D" uid="uid://cx7ql0wqm2phj" path="res://Pad.png" id="1_7ruq7"]
 [ext_resource type="Script" uid="uid://bdcdjhgxw1lh1" path="res://targetgrid.gd" id="2_6goqw"]
 [ext_resource type="Script" uid="uid://b2n74kykblku4" path="res://node_2d.gd" id="3_6goqw"]
@@ -7,6 +8,9 @@
 [ext_resource type="Script" uid="uid://qgyd7jyymibt" path="res://TileMap.gd" id="3_mqdgr"]
 [ext_resource type="Texture2D" uid="uid://bwwqrf0a84kl1" path="res://hand-1.png" id="4_7ruq7"]
 [ext_resource type="Script" uid="uid://cd3wpv5x3vpbc" path="res://completion.gd" id="4_mqdgr"]
+[ext_resource type="PackedScene" uid="uid://lpf8hrivg7br" path="res://button.tscn" id="5_ab5dj"]
+[ext_resource type="Script" uid="uid://fnjplb10aw5x" path="res://button.gd" id="6_vvhls"]
+[ext_resource type="Script" uid="uid://rt1sdt55lwts" path="res://art_done.gd" id="11_ab5dj"]
 
 [sub_resource type="Resource" id="Resource_7ruq7"]
 script = ExtResource("3_mqdgr")
@@ -17,14 +21,27 @@ row_4 = Array[int]([0, 0, 0, 0, 0])
 row_5 = Array[int]([2, 0, 0, 0, 2])
 metadata/_custom_type_script = "uid://qgyd7jyymibt"
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r04n3"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n4tde"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxja4"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lt4la"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="PixelArtMini" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_4fk06")
 
 [node name="Tablet" type="Node2D" parent="."]
 
 [node name="tablet-sprite" type="Sprite2D" parent="Tablet"]
-position = Vector2(597, 423)
+position = Vector2(593, 395)
 texture = ExtResource("1_7ruq7")
 
 [node name="Node2D2" type="Node2D" parent="Tablet"]
@@ -64,6 +81,17 @@ columns = 5
 script = ExtResource("2_6goqw")
 tile_set = SubResource("Resource_7ruq7")
 
+[node name="@Button@20968" type="Button" parent="Tablet/Target/Targetgrid" instance=ExtResource("5_ab5dj")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_r04n3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n4tde")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vxja4")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lt4la")
+disabled = true
+script = ExtResource("6_vvhls")
+
 [node name="Canvas" type="CenterContainer" parent="Tablet"]
 custom_minimum_size = Vector2(64, 64)
 offset_left = 111.0
@@ -90,14 +118,36 @@ target_container = NodePath("../Target/Targetgrid")
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("3_6goqw")
 
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 634.0
+offset_right = 1072.0
+offset_bottom = 723.0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="hand" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(0, 1)
+position = Vector2(0, 39)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_7ruq7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 
+[node name="done" type="Label" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 179.0
+offset_right = 731.0
+offset_bottom = 316.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Done!"
+script = ExtResource("11_ab5dj")
+
+[connection signal="pressed" from="Tablet/Target/Targetgrid/@Button@20968" to="Tablet/Target/Targetgrid/@Button@20968" method="_on_pressed"]
 [connection signal="pressed" from="Tablet/Canvas/canvasgrid/Button" to="Tablet/Canvas/canvasgrid/Button" method="_on_pressed"]
 [connection signal="pressed" from="Tablet/completion" to="Tablet/completion" method="_on_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

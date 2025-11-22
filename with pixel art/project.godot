@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="FBLA"
+config/name="with pixel art"
 run/main_scene="uid://ddwacjxuju81e"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 Global="*res://globalvariables.gd"
 Car="*res://car_minigame.gd"
+Surgery="*res://surgery_minigame.gd"
+Art="*res://pixel_art_mini.gd"
 
 [display]
 
