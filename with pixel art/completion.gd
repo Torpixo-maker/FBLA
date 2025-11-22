@@ -21,4 +21,7 @@ func _on_pressed() -> void:
 					#PUT HERE WHAT HAPPENS WHEN THEY DONT MATCH
 					return
 	print("WOW YOU WON OMG OMG WOW AMZING YOU CAN CLICK WOW")
+	Global.tasksLeft -= 1
+	Art.done = true
+	hide()
 	#PUT HERE WHAT HAPPENS WHEN THEY MATCH
