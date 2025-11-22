@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	position = get_global_mouse_position()
 
 func _input(event):
-	if Input.is_action_pressed("left_click"):
+	if event.is_action_pressed("left_click"):
 		if Car.handState == "hand":
 			$playerhand.scale = Vector2(1.5, 1.5)
 			$playerhand.texture = hand2
@@ -29,13 +29,18 @@ func _input(event):
 			$playerhand.scale = Vector2(3, 3)
 			Car.handState = "wrench"
 		else:
-			if Car.wrench_on_old_wheel == false:
+			if Car.wrench_on_old_wheel == false and Car.wrench_on_new_wheel == false:
 				$playerhand.texture = hand1
 				$playerhand.scale = Vector2(1.5, 1.5)
 				Car.handState = "hand"
 		
 		if Car.wrench_on_old_wheel == true:
 			Car.old_tire_bolts = "off"
+		
+		if Car.wrench_on_new_wheel == true:
+			if Car.new_tire_bolts == "off":
+				Global.tasksLeft -= 1
+			Car.new_tire_bolts = "on"
 
 
 func hand():

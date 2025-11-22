@@ -18,11 +18,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	print(wrench_on_new_wheel)
 	if Global.inMinigames == true and Global.minigame == "car":
 		show()
 	else:
 		hide()
 
 
-func _on_car_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	pass # Replace with function body.
+
+func _on_button_pressed() -> void:
+	Global.inMinigames = false

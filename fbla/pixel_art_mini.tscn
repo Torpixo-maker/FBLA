@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://racsubn700sw"]
 
-[ext_resource type="Script" uid="uid://bdii3csqe1qf3" path="res://grid_container.gd" id="1_swrb1"]
+[ext_resource type="Script" uid="uid://bdii3csqe1qf3" path="res://targetgrid.gd" id="1_swrb1"]
 [ext_resource type="PackedScene" uid="uid://lpf8hrivg7br" path="res://button.tscn" id="2_6goqw"]
 [ext_resource type="Script" uid="uid://b2n74kykblku4" path="res://node_2d.gd" id="3_6goqw"]
-[ext_resource type="Script" uid="uid://ck4o7dy17t3qu" path="res://canvasgrid.gd" id="3_7ruq7"]
+[ext_resource type="Script" uid="uid://ck4o7dy17t3qu" path="res://grid_container.gd" id="3_7ruq7"]
 [ext_resource type="Texture2D" uid="uid://bwwqrf0a84kl1" path="res://hand-1.png" id="4_7ruq7"]
 [ext_resource type="Script" uid="uid://cd3wpv5x3vpbc" path="res://completion.gd" id="4_mqdgr"]
 

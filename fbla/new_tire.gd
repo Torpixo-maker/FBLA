@@ -17,6 +17,6 @@ func _process(delta: float) -> void:
 
 
 
-func _on_car_body_entered(body: Node2D) -> void:
+func _on_car_area_entered(area: Area2D) -> void:
 	if Car.old_tire_on_car == false:
 		Car.new_tire = "on"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dn5ia0uncdbrx"]
+[gd_scene load_steps=18 format=3 uid="uid://dn5ia0uncdbrx"]
 
 [ext_resource type="Texture2D" uid="uid://cx7ql0wqm2phj" path="res://Pad.png" id="1_4nvyi"]
 [ext_resource type="Script" uid="uid://df0b125v17ip3" path="res://car_minigame.gd" id="1_d0wqu"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cpjs4dkwylai1" path="res://car minigame/wrench.png" id="5_6x0t5"]
 [ext_resource type="Script" uid="uid://c1a1md4p3806c" path="res://new_tire.gd" id="6_mcaya"]
 [ext_resource type="Texture2D" uid="uid://d1rnxdhc2n7dq" path="res://car minigame/tire_no_screws.png" id="6_offks"]
+[ext_resource type="Script" uid="uid://bpirl11ye4xyw" path="res://done.gd" id="13_l5is6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13meq"]
 radius = 23.0722
@@ -32,6 +33,30 @@ script = ExtResource("1_d0wqu")
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(592, 395)
 texture = ExtResource("1_4nvyi")
+
+[node name="Label" type="Label" parent="background"]
+offset_left = -392.0
+offset_top = -339.0
+offset_right = 434.0
+offset_bottom = -297.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Change the spare tire (do everything in the correct order)"
+
+[node name="Label2" type="Label" parent="background"]
+offset_left = -536.0
+offset_top = 133.0
+offset_right = -73.0
+offset_bottom = 285.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Controls:
+- Click screwdriver to pick it up
+- Click again to put it down
+- Click wheel with screwdriver to screw/unscrew
+- Drag wheels to change
+- Don't touch wheels together (bug makes
+  them stick together)"
 
 [node name="car" type="Area2D" parent="."]
 position = Vector2(632, 328)
@@ -86,6 +111,14 @@ rotation = 1.5707964
 scale = Vector2(3, 3)
 texture = ExtResource("5_6x0t5")
 
+[node name="Button" type="Button" parent="."]
+offset_left = 976.0
+offset_top = 656.0
+offset_right = 1112.0
+offset_bottom = 728.0
+theme_override_font_sizes/font_size = 20
+text = "Back"
+
 [node name="hand" type="CharacterBody2D" parent="."]
 script = ExtResource("3_nlt58")
 
@@ -98,7 +131,18 @@ position = Vector2(0, 57)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_0lj0v")
 
+[node name="done" type="Label" parent="."]
+offset_left = 464.0
+offset_top = 224.0
+offset_right = 747.0
+offset_bottom = 361.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Done!"
+script = ExtResource("13_l5is6")
+
 [connection signal="area_entered" from="car" to="old_tire" method="_on_car_area_entered"]
+[connection signal="area_entered" from="car" to="new_tire" method="_on_car_area_entered"]
 [connection signal="area_exited" from="car" to="old_tire" method="_on_car_area_exited"]
 [connection signal="area_shape_entered" from="car" to="." method="_on_car_area_shape_entered"]
 [connection signal="body_entered" from="car" to="old_tire" method="_on_car_body_entered"]
@@ -116,3 +160,4 @@ texture = ExtResource("4_0lj0v")
 [connection signal="body_exited" from="wrench" to="." method="_on_wrench_body_exited"]
 [connection signal="body_exited" from="wrench" to="wrench" method="_on_body_exited"]
 [connection signal="body_exited" from="wrench" to="hand" method="_on_wrench_body_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
