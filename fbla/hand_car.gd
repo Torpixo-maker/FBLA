@@ -1,7 +1,7 @@
 extends CharacterBody2D
 var hand1 = preload("res://hand-1.png")
 var hand2 = preload("res://hand-2.png")
-var wrench = preload("res://car minigame/hand_wrench.png")
+var wrench = preload("res://car minigame/wrench.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,26 +18,24 @@ func _process(delta: float) -> void:
 	position = get_global_mouse_position()
 
 func _input(event):
-	if event.is_action_pressed("left_click"):
+	if Input.is_action_pressed("left_click"):
 		if Car.handState == "hand":
+			$playerhand.scale = Vector2(1.5, 1.5)
 			$playerhand.texture = hand2
 
 	if event.is_action_released("left_click"):
 		if Car.hand_on_wrench == true and Car.wrench_in_hand == false:
 			$playerhand.texture = wrench
+			$playerhand.scale = Vector2(3, 3)
 			Car.handState = "wrench"
 		else:
-			if Car.wrench_on_old_wheel == false and Car.wrench_on_new_wheel == false:
+			if Car.wrench_on_old_wheel == false:
 				$playerhand.texture = hand1
+				$playerhand.scale = Vector2(1.5, 1.5)
 				Car.handState = "hand"
 		
 		if Car.wrench_on_old_wheel == true:
 			Car.old_tire_bolts = "off"
-		
-		if Car.wrench_on_new_wheel == true and Car.new_tire == "on":
-			if Car.new_tire_bolts == "off":
-				Global.tasksLeft -= 1
-			Car.new_tire_bolts = "on"
 
 
 func hand():

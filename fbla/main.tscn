@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ddwacjxuju81e"]
+[gd_scene load_steps=18 format=3 uid="uid://ddwacjxuju81e"]
 
 [ext_resource type="Script" uid="uid://6lp401cmwq70" path="res://main_scene.gd" id="1_kek77"]
 [ext_resource type="Script" uid="uid://be70rkhh6doay" path="res://map.gd" id="2_272bh"]
@@ -7,28 +7,18 @@
 [ext_resource type="Script" uid="uid://dbwuftxnn50l3" path="res://car_table.gd" id="5_dg77c"]
 [ext_resource type="Script" uid="uid://dam1ohw277x53" path="res://player.gd" id="5_ycdy4"]
 [ext_resource type="Script" uid="uid://cbs054ncjlnfo" path="res://camera_2d.gd" id="6_w48qg"]
-[ext_resource type="Texture2D" uid="uid://dgby0f1d83t52" path="res://table.png" id="6_ycdy4"]
-[ext_resource type="Script" uid="uid://6iw6rpssjfi4" path="res://art_table.gd" id="7_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://7kqqcxcbi2w0" path="res://icon.svg" id="6_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://crjow5jfu2w3c" path="res://player.png" id="7_vivmo"]
 [ext_resource type="Script" uid="uid://isljpu3lhcby" path="res://title_screen.gd" id="8_kek77"]
-[ext_resource type="Script" uid="uid://lg5wl68uvfvq" path="res://surgery_table.gd" id="8_yaehf"]
 [ext_resource type="Texture2D" uid="uid://bgdjdeb2ee53x" path="res://title screen.png" id="9_4c57u"]
-[ext_resource type="Script" uid="uid://bw8frto0owovs" path="res://trophy.gd" id="9_82xsv"]
-[ext_resource type="Texture2D" uid="uid://dugl3tcx1xblf" path="res://trophy.png" id="10_getpj"]
 [ext_resource type="Script" uid="uid://bl4j31dwiq5n7" path="res://tasks_display.gd" id="10_w48qg"]
 [ext_resource type="PackedScene" uid="uid://dn5ia0uncdbrx" path="res://car_minigame.tscn" id="13_ycdy4"]
-[ext_resource type="PackedScene" uid="uid://racsubn700sw" path="res://pixel_art_mini.tscn" id="15_yaehf"]
-[ext_resource type="PackedScene" uid="uid://d4iioqc7kaca2" path="res://surgery_minigame.tscn" id="16_2cqfq"]
-[ext_resource type="AudioStream" uid="uid://bhoft6p1k2ugn" path="res://soundtrack.ogg" id="18_074og"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vivmo"]
-radius = 69.354164
+radius = 102.01961
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2cqfq"]
-size = Vector2(80, 52)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_82xsv"]
-size = Vector2(40, 84)
+size = Vector2(93, 92)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(24, 20)
@@ -73,77 +63,21 @@ texture = ExtResource("4_kek77")
 position = Vector2(-296, -160)
 collision_layer = 2
 script = ExtResource("5_dg77c")
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="main/car_table"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="main/car_table/Area2D"]
-position = Vector2(-1, 1)
 shape = SubResource("CircleShape2D_vivmo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="main/car_table"]
-position = Vector2(0, 6)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_2cqfq")
 
 [node name="Sprite2D" type="Sprite2D" parent="main/car_table"]
 position = Vector2(0, -2.3841858e-07)
-scale = Vector2(4, 4)
+scale = Vector2(0.7421875, 0.7421875)
 texture = ExtResource("6_ycdy4")
-
-[node name="art_table" type="StaticBody2D" parent="main"]
-position = Vector2(211, -150)
-collision_layer = 2
-script = ExtResource("7_2cqfq")
-metadata/_edit_group_ = true
-
-[node name="Area2D" type="Area2D" parent="main/art_table"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="main/art_table/Area2D"]
-position = Vector2(-1, 1)
-shape = SubResource("CircleShape2D_vivmo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="main/art_table"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_2cqfq")
-
-[node name="Sprite2D" type="Sprite2D" parent="main/art_table"]
-position = Vector2(0, -2.3841858e-07)
-scale = Vector2(4, 4)
-texture = ExtResource("6_ycdy4")
-
-[node name="surgery_table" type="StaticBody2D" parent="main"]
-position = Vector2(-153, 179)
-collision_layer = 2
-script = ExtResource("8_yaehf")
-metadata/_edit_group_ = true
-
-[node name="Area2D" type="Area2D" parent="main/surgery_table"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="main/surgery_table/Area2D"]
-position = Vector2(-1, 1)
-shape = SubResource("CircleShape2D_vivmo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="main/surgery_table"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_2cqfq")
-
-[node name="Sprite2D" type="Sprite2D" parent="main/surgery_table"]
-position = Vector2(0, -2.3841858e-07)
-scale = Vector2(4, 4)
-texture = ExtResource("6_ycdy4")
-
-[node name="trophy" type="StaticBody2D" parent="main"]
-position = Vector2(-101, -44)
-collision_layer = 2
-script = ExtResource("9_82xsv")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="main/trophy"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_82xsv")
-
-[node name="Sprite2D" type="Sprite2D" parent="main/trophy"]
-scale = Vector2(4, 4)
-texture = ExtResource("10_getpj")
 
 [node name="player" type="CharacterBody2D" parent="main"]
 collision_mask = 2
@@ -184,32 +118,8 @@ offset_bottom = 448.0
 theme_override_font_sizes/font_size = 30
 text = "Play"
 
-[node name="Label" type="Label" parent="main/title_screen"]
-offset_left = 849.0
-offset_top = 19.0
-offset_right = 1393.0
-offset_bottom = 168.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-text = "Controls:
-WASD/arrow keys to move
-Press space near a table to
-enter a minigame"
-
 [node name="car minigame" parent="." instance=ExtResource("13_ycdy4")]
-
-[node name="PixelArtMini" parent="." instance=ExtResource("15_yaehf")]
-
-[node name="surgery_minigame" parent="." instance=ExtResource("16_2cqfq")]
-
-[node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_074og")
-autoplay = true
 
 [connection signal="body_entered" from="main/car_table/Area2D" to="main/car_table" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="main/car_table/Area2D" to="main/car_table" method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="main/art_table/Area2D" to="main/art_table" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="main/art_table/Area2D" to="main/art_table" method="_on_area_2d_body_exited"]
-[connection signal="body_entered" from="main/surgery_table/Area2D" to="main/surgery_table" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="main/surgery_table/Area2D" to="main/surgery_table" method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="main/title_screen/Button" to="main/title_screen" method="_on_button_pressed"]
