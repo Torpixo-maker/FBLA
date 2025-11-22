@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://racsubn700sw"]
+
+[ext_resource type="Texture2D" uid="uid://cx7ql0wqm2phj" path="res://Pad.png" id="1_7ruq7"]
+[ext_resource type="Script" uid="uid://bdii3csqe1qf3" path="res://grid_container.gd" id="1_swrb1"]
+[ext_resource type="Script" uid="uid://b2n74kykblku4" path="res://node_2d.gd" id="3_6goqw"]
+[ext_resource type="Script" uid="uid://ck4o7dy17t3qu" path="res://canvasgrid.gd" id="3_7ruq7"]
+[ext_resource type="Texture2D" uid="uid://bwwqrf0a84kl1" path="res://hand-1.png" id="4_7ruq7"]
+[ext_resource type="Script" uid="uid://cd3wpv5x3vpbc" path="res://completion.gd" id="4_mqdgr"]
+
+[node name="PixelArtMini" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Tablet" type="Node2D" parent="."]
+
+[node name="tablet-sprite" type="Sprite2D" parent="Tablet"]
+position = Vector2(597, 423)
+texture = ExtResource("1_7ruq7")
+
+[node name="Node2D2" type="Node2D" parent="Tablet"]
+
+[node name="Equal sign line 2" type="ColorRect" parent="Tablet"]
+offset_left = 150.0
+offset_top = -80.0
+offset_right = 190.0
+offset_bottom = -40.0
+
+[node name="Equal sign line 1" type="ColorRect" parent="Tablet"]
+offset_left = 41.0
+offset_top = -128.0
+offset_right = 81.0
+offset_bottom = -88.0
+
+[node name="Label" type="Label" parent="Tablet"]
+offset_left = 180.0
+offset_top = 110.0
+offset_right = 1036.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 42
+text = "Match the picture with the one on the left!"
+
+[node name="Target" type="CenterContainer" parent="Tablet"]
+modulate = Color(0, 0.5065823, 0.5065822, 1)
+self_modulate = Color(0.3137255, 1, 1, 1)
+offset_left = 875.0
+offset_top = 450.0
+offset_right = 915.0
+offset_bottom = 490.0
+
+[node name="Targetgrid" type="GridContainer" parent="Tablet/Target"]
+layout_mode = 2
+columns = 5
+script = ExtResource("1_swrb1")
+
+[node name="Canvas" type="CenterContainer" parent="Tablet"]
+offset_left = 287.0
+offset_top = 450.0
+offset_right = 327.0
+offset_bottom = 490.0
+
+[node name="canvasgrid" type="GridContainer" parent="Tablet/Canvas"]
+layout_mode = 2
+columns = 5
+script = ExtResource("3_7ruq7")
+
+[node name="completion" type="Button" parent="Tablet"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Submit"
+script = ExtResource("4_mqdgr")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_6goqw")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="hand" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(-94, 55)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_7ruq7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
